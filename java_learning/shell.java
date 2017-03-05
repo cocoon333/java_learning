@@ -1,11 +1,27 @@
-public class shell{
-    public static void main(String[] args){
-        for (int i = 0; i < N; i++)
-           for (int j = 0; j < N; j++)
-              if (i != j) System.out.println(i + ", " + j);
+public class shell { 
+    public static void main(String[] args) {
+        int n = Integer.parseInt(args[0]);
+        StdDraw.setXscale(-n, +n);
+        StdDraw.setYscale(-n, +n);
+        StdDraw.clear(StdDraw.GRAY);
+        StdDraw.enableDoubleBuffering();
 
-        for (int i = 0; i < N; i++)
-           for (int j = 0; (i != j) && (j < N); j++)
-              System.out.println(i + ", " + j);
+        int x = 0, y = 0;
+        int steps = 0;
+        while (Math.abs(x) < n && Math.abs(y) < n) {
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.filledSquare(x, y, 0.45);
+            double r = Math.random();
+            if      (r < 0.25) x--;
+            else if (r < 0.50) x++;
+            else if (r < 0.75) y--;
+            else if (r < 1.00) y++;
+            steps++;
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.filledSquare(x, y, 0.45);
+            StdDraw.show();
+        }
+        System.out.println("Total steps = " + steps);
     }
+
 }
