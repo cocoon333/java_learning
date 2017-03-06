@@ -1,44 +1,29 @@
 public class SpiralMice{
     public static void main(String[] args){
-        double previous_pointx = 0.0;
-        double previous_pointy = 0.0;
-        double pointx;
-        double pointy;
-        int    numSteps = 100;
-        int    numCycles = 10;
-        double offsetx = 0.5;
-        double offsety = 0.5;
-        double xpoints[] = new double[numSteps*numCycles];
-        double ypoints[] = new double[numSteps*numCycles];
-        double theta_offset = Double.parseDouble(args[2]);
-        theta_offset = theta_offset*Math.PI;
-        double b = Double.parseDouble(args[0]);
-        double a = Double.parseDouble(args[1]);
-        pointx = a*Math.pow(Math.E, b * (2*Math.PI)/numSteps * 0+theta_offset)*Math.cos((2*Math.PI)/numSteps * 0 + theta_offset) + offsetx;
-        pointy = a*Math.pow(Math.E, b * (2*Math.PI)/numSteps * 0+theta_offset)*Math.sin((2*Math.PI)/numSteps * 0 + theta_offset) + offsetx;
+        int points = Integer.parseInt(args[0]);
+        whirl(points);
+    }
+    
+    public static void whirl(int points){
+        while (true){
+            StdDraw.clear();
+            double whirl_x_coordinates[][] = new double[points][100];
+            double whirl_y_coordinates[][] = new double[points][100];
+            double b = -1;
 
+            for (int i=0; i<points; ++i){
+                double input[] = {b, 0.5, (2.0/points)*i};
+                whirl_x_coordinates[i] = SpiralPointMaking.run(input)[0]; 
+                whirl_y_coordinates[i] = SpiralPointMaking.run(input)[1]; 
+            }
 
-        for (int i = 0; i < numCycles; ++i){
-            for (int j = 0; j < numSteps; ++j) {
-                previous_pointx = pointx;
-                previous_pointy = pointy;
-
-                pointx = a * Math.pow(Math.E, b * ((2*Math.PI*i) + (2*Math.PI)/numSteps * j + theta_offset))*Math.cos((2*Math.PI)/numSteps * j+theta_offset) + offsetx;
-                pointy = a * Math.pow(Math.E, b * ((2*Math.PI*i) + (2*Math.PI)/numSteps * j + theta_offset))*Math.sin((2*Math.PI)/numSteps * j+theta_offset) + offsety;
-
-                System.out.println(pointx);
-                System.out.println(pointy);
-
-                if (j >= 1){
-                    xpoints[(i+1)*j] = pointx;
-                    ypoints[(i+1)*j] = pointy;
+            for (int i=0; i<100; ++i){
+                for (int j=0; j<points; ++j){
+                    if (j < points-1) StdDraw.line(whirl_x_coordinates[j][i], whirl_y_coordinates[j][i], whirl_x_coordinates[j+1][i], whirl_y_coordinates[j+1][i]);
+                    else StdDraw.line(whirl_x_coordinates[j][i], whirl_y_coordinates[j][i], whirl_x_coordinates[0][i], whirl_y_coordinates[0][i]);
+                    StdDraw.pause(15);
                 }
             }
         }
-    my_return(pointx);
-    }
-
-    public static double[][] my_return(double[][] args){
-        return args;
     }
 }
