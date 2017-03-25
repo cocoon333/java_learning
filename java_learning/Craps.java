@@ -8,5 +8,5 @@ public class Craps{
         int win = 0;
         for (int i=0; i<n; ++i){
             int dice_sum = 0;
-            while (!(crapsWinOrLost())){
-
+            while (!(crapsWinOrLost(dice_sum))) dice_sum = diceRoll();
+            craps

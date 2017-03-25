@@ -1,13 +1,17 @@
-public static int max3(int a, int b, int c) {
-   int max = a;
-   if (b > max) max = b;
-   if (c > max) max = c;
-   return max;
-}
+import java.awt.Color;
 
-public static double max3(double a, double b, double c) {
-   double max = a;
-   if (b > max) max = b;
-   if (c > max) max = c;
-   return max;
+public class shell{
+
+    public static void main(String[] args) {
+        String s;
+
+        s = args[0];
+
+        s = s.replaceAll("A", "t");
+        s = s.replaceAll("T", "a");
+        s = s.replaceAll("C", "g");
+        s = s.replaceAll("G", "c");
+        System.out.println(s.toUpperCase());
+
+    }
 }
