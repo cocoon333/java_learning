@@ -9,9 +9,9 @@ public class Ball {
     public Ball() {
         rx = 0.0;
         ry = 0.0;
-        vx = StdRandom.uniform(-0.015, 0.015);
-        vy = StdRandom.uniform(-0.015, 0.015);
-        radius = StdRandom.uniform(0.025, 0.075);
+        vx = StdRandom.uniform(-0.055, 0.055);
+        vy = StdRandom.uniform(-0.050, 0.050);
+        radius = StdRandom.uniform(0.010, 0.035);
     }
 
     // bounce of vertical wall by reflecting x-velocity
